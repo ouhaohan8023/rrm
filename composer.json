@@ -1,0 +1,30 @@
+{
+    "name": "ohhink/rrm",
+    "description": "Laravel RBAC based on Laravel-Permission with backend UI",
+    "type": "lib",
+    "authors": [
+        {
+            "name": "OhhInk",
+            "email": "mrmercury@foxmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "spatie/laravel-permission": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "OhhInk\\Rrm\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "OhhInk\\Rrm\\RrmServiceProvider"
+            ]
+        }
+    }
+}

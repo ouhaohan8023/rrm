@@ -1,0 +1,1 @@
+{{ $data->links('vendor.pagination.default') }}
