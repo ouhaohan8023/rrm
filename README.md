@@ -60,6 +60,14 @@ Build the database and run the seeder
 $ php artisan migrate:refresh --seed
 ```
 
+Update the local configure file `.env`
+```$xslt
+CACHE_DRIVER=redis
+REDIS_CLIENT=predis
+# suggest
+QUEUE_CONNECTION=redis
+```
+
 That's it !
 
 ## How to use

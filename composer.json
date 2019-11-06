@@ -20,10 +20,10 @@
     ],
     "require": {
         "php": "^7.2",
-        "spatie/laravel-permission": "^3.0"
+        "spatie/laravel-permission": "^3.0",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
-        "predis/predis": "^1.1"
     },
     "autoload": {
         "psr-4": {

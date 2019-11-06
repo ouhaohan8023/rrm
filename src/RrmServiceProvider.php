@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use OhhInk\Rrm\Commands\CacheOnlineUsers;
+use OhhInk\Rrm\Jobs\LogsJob;
 use OhhInk\Rrm\Middleware\Admin;
 
 class RrmServiceProvider extends ServiceProvider

@@ -80,6 +80,14 @@ $ php artisan vendor:publish
 $ php artisan migrate:refresh --seed
 ```
 
+修改配置文件`.env`
+```$xslt
+CACHE_DRIVER=redis
+REDIS_CLIENT=predis
+# suggest
+QUEUE_CONNECTION=redis
+```
+
 至此，安装完毕
 
 ## 使用说明

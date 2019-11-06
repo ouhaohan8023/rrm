@@ -2,6 +2,7 @@
 
 namespace OhhInk\Rrm\Jobs;
 
+use Illuminate\Support\Facades\Log;
 use OhhInk\Rrm\Model\OperationLogs;
 use OhhInk\Rrm\Model\User;
 use Illuminate\Bus\Queueable;
@@ -20,6 +21,7 @@ class LogsJob implements ShouldQueue
     protected $path;
     protected $ip;
     protected $data;
+
     /**
      * Create a new job instance.
      *
@@ -41,6 +43,7 @@ class LogsJob implements ShouldQueue
      */
     public function handle()
     {
+        Log::info('doing');
         if (isset($this->data['password'])) {
             unset($this->data['password']);
         }
