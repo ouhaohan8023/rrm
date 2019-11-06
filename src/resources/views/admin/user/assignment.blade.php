@@ -29,10 +29,10 @@
                     <select multiple="multiple" class="multi-select" id="my_multi_select1"
                             name="roles[]">
                       @foreach($select as $s1)
-                        <option value="{{$s1}}" selected>{{__('rrm::sys.role.'.$s1)}}</option>
+                        <option value="{{$s1}}" selected>{{__('rrm::role.'.$s1)}}</option>
                       @endforeach
                       @foreach($no_select as $s2)
-                        <option value="{{$s2}}">{{__('rrm::sys.role.'.$s2)}}</option>
+                        <option value="{{$s2}}">{{__('rrm::role.'.$s2)}}</option>
                       @endforeach
                     </select>
                   </div>

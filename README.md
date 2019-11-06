@@ -1,6 +1,9 @@
 # Laravel Rbac
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
+**[English](https://github.com/ouhaohan8023/rrm/blob/master/README.md)**
+**[中文](https://github.com/ouhaohan8023/rrm/blob/master/README.cn.md)**
+
 > This Package is used for rules controller which based on roles
 
 This package is based on [Laravel Permission](https://github.com/spatie/laravel-permission.git) and can build a rule controller panel with UI in few minutes.
@@ -69,6 +72,36 @@ account : admin@gmail.com
 password : admin&%@cv..
 ```
 
+What's RBAC talk about is , assign one or more rules to a role and assign one or more roles to a user. We can controller rules with a role , which we normally do rather than a detail rule.
+So , there is few steps you have to do with your business logic
+1. finish your code and add your routes in the route/web.php like you normally do
+2. click the **Route Reload** . For example , we get the new route **admin.test**
+3. create or update your translate files in the path **resources/vendor/rrm/zh-cn/permission.php**
+4. assign this new route to a role , like **admin**
+5. if this new route is a menu function, you should create a new menu and rebuild the menu otherwise the new menu will not display
+
+
+If you want to rewrite the route , you should add below to you **route/web.php**
+```$php
+# this is rewrite the route to your app/Http/Controllers/IndexController.php index()
+
+Route::prefix(config('admin.prefix'))->middleware([
+    'auth',
+    'admin'
+])->name('admin.')->group(function () {
+    Route::get('/', 'IndexController@index')->name('index');
+});
+```
+In your **app/Http/Controllers/IndexController.php** file ，you should add below 
+```$php
+
+public function index()
+    {
+        // put your code here !!!
+
+        return parent::index();
+    }
+```
 ## Related Efforts
 
 - [Laravel Permission](https://github.com/spatie/laravel-permission.git) - Associate users with permissions and roles

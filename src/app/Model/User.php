@@ -48,7 +48,7 @@ class User extends \App\User
         $roles = $this->getRoleNames();
         $str = '';
         foreach ($roles as $k => $v) {
-            $str .= __('rrm::sys.role.'.$v).',';
+            $str .= __('rrm::role.'.$v).',';
         }
         return rtrim($str, ',');
     }

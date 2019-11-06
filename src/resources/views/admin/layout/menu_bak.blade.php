@@ -21,9 +21,9 @@
                     <span>@lang('rrm::dashboard.Role&Permission')</span>
                 </a>
                 <ul class="sub">
-                    <li><a  href="{{route('admin.sys.role.index')}}">@lang('dashboard.Role')</a></li>
-                    <li><a  href="{{route('admin.sys.permission.index')}}">@lang('dashboard.Permission')</a></li>
-                    <li><a  href="{{route('admin.sys.menu.index')}}">@lang('dashboard.Menu')</a></li>
+                    <li><a  href="{{route('admin.role.index')}}">@lang('dashboard.Role')</a></li>
+                    <li><a  href="{{route('admin.permission.index')}}">@lang('dashboard.Permission')</a></li>
+                    <li><a  href="{{route('admin.menu.index')}}">@lang('dashboard.Menu')</a></li>
                 </ul>
             </li>
 

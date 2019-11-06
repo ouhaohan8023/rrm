@@ -42,6 +42,10 @@ class RrmServiceProvider extends ServiceProvider
             __DIR__.'/database/seeds' => database_path('seeds'),
         ], 'seeds');
 
+        $this->publishes([
+            __DIR__.'/resources/lang' => resource_path('./vendor/rrm/'),
+        ], 'lang');
+
 //        $this->publishes([
 //            __DIR__.'/view/admin' => resource_path('views/admin'),
 //        ], 'views');

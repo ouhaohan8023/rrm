@@ -1,6 +1,9 @@
 # Laravel Rbac
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
+**[English](https://github.com/ouhaohan8023/rrm/blob/master/README.md)**
+**[中文](https://github.com/ouhaohan8023/rrm/blob/master/README.cn.md)**
+
 > 基于角色的权限管理拓展包
 
 本拓展包是基于[Laravel Permission](https://github.com/spatie/laravel-permission.git)的界面化封装，用于快速搭建权限管理后台
@@ -13,6 +16,7 @@
 ## 内容列表
 
 - [声明](#声明)
+- [展示](#展示)
 - [背景](#背景)
 - [安装](#安装)
 - [使用说明](#使用说明)
@@ -23,6 +27,26 @@
 
 ## 声明
 本文中的 **权限** 也就是 laravel中的 **路由**  
+
+# 展示
+
+面板首页
+![dashboard](http://pic.ohh.ink/blade/show2.png)
+
+用户列表
+![user list](http://pic.ohh.ink/blade/show3.png)
+
+用户权限分配
+![user role assignment](http://pic.ohh.ink/blade/show4.png)
+
+菜单构建
+![menu build](http://pic.ohh.ink/blade/show6.png)
+
+路由列表
+![menu build](http://pic.ohh.ink/blade/show8.png)
+
+10分钟内在线用户
+![menu build](http://pic.ohh.ink/blade/show9.png)
 
 ## 背景
 
@@ -65,6 +89,36 @@ $ php artisan migrate:refresh --seed
 ```sh
 账号 : admin@gmail.com
 密码 : admin&%@cv..
+```
+
+RBAC 的理念是，将权限赋予给角色，将角色赋予给用户。一个角色可以有多个权限，一个用户可以有多个角色。
+所以使用以下步骤加入你的业务逻辑
+1. 编写好你的业务逻辑路由
+2. 通过**路由检测**功能，获取最新的权限，例如**test**
+3. 在 **resources/vendor/rrm/zh-cn/permission.php** 中创建对应的翻译数据，若无此文件，可以自行创建此路径下的 **permission.php**。例如将 *test* 翻译为 **测试功能**
+4. 给对应的角色分配该路由，例如给**admin**用户分配**测试功能**
+5. 如果此功能为菜单功能，需要新增菜单，并重新调整菜单布局
+
+如果你想重写路由，请将以下代码加入文件**route/web.php**
+```$php
+# this is rewrite the route to your app/Http/Controllers/IndexController.php index()
+
+Route::prefix(config('admin.prefix'))->middleware([
+    'auth',
+    'admin'
+])->name('admin.')->group(function () {
+    Route::get('/', 'IndexController@index')->name('index');
+});
+```
+在你的 **app/Http/Controllers/IndexController.php** 控制器中，你应该这样写
+```$php
+
+public function index()
+    {
+        // put your code here !!!
+
+        return parent::index();
+    }
 ```
 
 ## 相关仓库

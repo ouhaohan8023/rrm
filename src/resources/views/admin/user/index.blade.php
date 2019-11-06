@@ -29,7 +29,7 @@
                   <td>{{$v['updated_at']}}</td>
                   <td>
                     <a href="{{route('admin.user.assignment', ['id' => $v['id']])}}"
-                       class="btn btn-success btn-xs">@lang('rrm::base.assignment')@lang('rrm::sys.role.role')</a>
+                       class="btn btn-success btn-xs">@lang('rrm::base.assignment')@lang('rrm::role.model')</a>
                     <a href="{{route('admin.user.update',['id'=>$v['id']])}}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
                     <button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal6"
                             onclick="deleteData({{$v['id']}},'{{$v['name']}}')"><i
