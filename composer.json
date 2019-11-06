@@ -1,16 +1,29 @@
 {
     "name": "ohhink/rrm",
     "description": "Laravel RBAC based on Laravel-Permission with backend UI",
+    "keywords": [
+        "laravel",
+        "permission",
+        "permissions",
+        "roles",
+        "rbac",
+        "security"
+    ],
+    "license": "MIT",
     "type": "lib",
     "authors": [
         {
             "name": "OhhInk",
-            "email": "mrmercury@foxmail.com"
+            "email": "mrmercury@foxmail.com",
+            "role": "Developer"
         }
     ],
     "require": {
         "php": "^7.2",
         "spatie/laravel-permission": "^3.0"
+    },
+    "require-dev": {
+        "predis/predis": "^1.1"
     },
     "autoload": {
         "psr-4": {
