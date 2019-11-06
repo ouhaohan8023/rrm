@@ -24,4 +24,10 @@ return [
     'Update' => ':model Update',
     'clear' => 'clear',
     'Online Users' => 'Online Users',
+    'Remember me' => 'Remember me',
+    'Forgot Password?' => 'Forgot Password?',
+    'Sign in' => 'Sign in',
+    'Forgot Password ?' => 'Forgot Password ?',
+    'Email' => 'Email',
+    'Password' => 'Password'
 ];

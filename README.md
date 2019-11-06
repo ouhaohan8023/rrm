@@ -53,6 +53,7 @@ $ composer install ohhink/rrm
 Publish the files , which include `admin.php`,`filesystems.php`,`permission.php` and front resource files and database seeds files
 ```sh
 $ php artisan vendor:publish
+$ php artisan vendor:publish --tag=seeds --force
 ```
 
 Build the database and run the seeder

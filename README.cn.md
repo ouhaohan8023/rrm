@@ -73,6 +73,7 @@ $ composer install ohhink/rrm
 根目录下运行资源发布，此命令会增加配置文件(`admin.php`,`filesystems.php`,`permission.php`)，以及前端资源文件和数据库填充文件
 ```sh
 $ php artisan vendor:publish
+$ php artisan vendor:publish --tag=seeds --force
 ```
 
 根目录下运行数据库迁移填充命令

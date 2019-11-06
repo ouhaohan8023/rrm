@@ -1,1 +1,1 @@
-{{ $data->links('vendor.pagination.default') }}
+{{ $data->links('rrm::vendor.pagination.default') }}

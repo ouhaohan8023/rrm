@@ -29,7 +29,7 @@
                             <tbody>
                             @foreach($data as $v)
                                 <tr>
-                                  <td><a href="#">{{__('permission.'.$v['name'])}}</a></td>
+                                  <td><a href="#">{{__('rrm::permission.'.$v['name'])}}</a></td>
                                   <td><a href="#">{{$v['name']}}</a></td>
                                     <td>{{$v['created_at']}}</td>
                                     <td>{{$v['updated_at']}}</td>
