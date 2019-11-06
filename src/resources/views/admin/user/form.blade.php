@@ -98,7 +98,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/bootstrap-fileupload/bootstrap-fileupload.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('admin_panel/assets/bootstrap-fileupload/bootstrap-fileupload.css')}}"/>
 
     <style>
 
@@ -107,7 +107,7 @@
 
 @section('js')
     <script type="text/javascript"
-            src="{{asset('assets/bootstrap-fileupload/bootstrap-fileupload.js?20191036')}}"></script>
+            src="{{asset('admin_panel/assets/bootstrap-fileupload/bootstrap-fileupload.js?20191036')}}"></script>
     <script>
 
     </script>

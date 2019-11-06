@@ -24,5 +24,11 @@ return [
     'Update' => ':model 修改',
     'clear' => '清除',
     'Online Users' => '在线用户',
-    'test' => 'XXX'
+    'test' => 'XXX',
+    'Remember me' => '记住我',
+    'Forgot Password?' => '忘记密码',
+    'Sign in' => '登陆',
+    'Forgot Password ?' => '忘记密码',
+    'Email' => '账号',
+    'Password' => '密码'
 ];

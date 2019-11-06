@@ -3,7 +3,7 @@
         <i class="fa fa-bars"></i>
     </div>
     <!--logo start-->
-    <a href="index.html" class="logo">Lara<span>vel</span></a>
+    <a href="index.html" class="logo">{{config('admin.admin_header_part_1')}}<span>{{config('admin.admin_header_part_2')}}</span></a>
     <!--logo end-->
     <div class="nav notify-row" id="top_menu">
         <!--  notification start -->

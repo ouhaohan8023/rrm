@@ -84,42 +84,63 @@ $ php artisan migrate:refresh --seed
 
 ## 使用说明
 
-后台默认路径 `/admin` , 此路径可以在`admin.php`中配置
-安装过程中，已经默认创建了一个超级管理员`admin`
-```sh
-账号 : admin@gmail.com
-密码 : admin&%@cv..
-```
+ - 后台默认路径 `/admin` , 此路径可以在`admin.php`中配置
+   安装过程中，已经默认创建了一个超级管理员`admin`
+   ```sh
+   账号 : admin@gmail.com
+   密码 : admin&%@cv..
+   ```
 
-RBAC 的理念是，将权限赋予给角色，将角色赋予给用户。一个角色可以有多个权限，一个用户可以有多个角色。
-所以使用以下步骤加入你的业务逻辑
-1. 编写好你的业务逻辑路由
-2. 通过**路由检测**功能，获取最新的权限，例如**test**
-3. 在 **resources/vendor/rrm/zh-cn/permission.php** 中创建对应的翻译数据，若无此文件，可以自行创建此路径下的 **permission.php**。例如将 *test* 翻译为 **测试功能**
-4. 给对应的角色分配该路由，例如给**admin**用户分配**测试功能**
-5. 如果此功能为菜单功能，需要新增菜单，并重新调整菜单布局
+ - RBAC 的理念是，将权限赋予给角色，将角色赋予给用户。一个角色可以有多个权限，一个用户可以有多个角色。
+   所以使用以下步骤加入你的业务逻辑
+   1. 编写好你的业务逻辑路由
+   2. 通过**路由检测**功能，获取最新的权限，例如**test**
+   3. 在 **resources/vendor/rrm/zh-cn/permission.php** 中创建对应的翻译数据，若无此文件，可以自行创建此路径下的 **permission.php**。例如将 *test* 翻译为 **测试功能**
+   4. 给对应的角色分配该路由，例如给**admin**用户分配**测试功能**
+   5. 如果此功能为菜单功能，需要新增菜单，并重新调整菜单布局
 
-如果你想重写路由，请将以下代码加入文件**route/web.php**
-```$php
-# this is rewrite the route to your app/Http/Controllers/IndexController.php index()
+ - 如果你想重写路由，请将以下代码加入文件**route/web.php**
+   ```$php
+   # this is rewrite the route to your app/Http/Controllers/IndexController.php index()
+   
+   Route::prefix(config('admin.prefix'))->middleware([
+       'auth',
+       'admin'
+   ])->name('admin.')->group(function () {
+       Route::get('/', 'IndexController@index')->name('index');
+   });
+   ```
+   在你的 **app/Http/Controllers/IndexController.php** 控制器中，你应该这样写
+   ```$php
+   
+   public function index()
+   {
+       // put your code here !!!
+   
+       return parent::index();
+   }
+   ```
 
-Route::prefix(config('admin.prefix'))->middleware([
-    'auth',
-    'admin'
-])->name('admin.')->group(function () {
-    Route::get('/', 'IndexController@index')->name('index');
-});
-```
-在你的 **app/Http/Controllers/IndexController.php** 控制器中，你应该这样写
-```$php
 
-public function index()
-    {
-        // put your code here !!!
+ - 为了使用右侧菜单上的**在线用户**功能，你需要在文件**app/Console.Kernel.php**中增加命令，如下
+   ```$php
+   protected function schedule(Schedule $schedule)
+   {
+       // $schedule->command('inspire')
+       //          ->hourly();
+       $schedule->command('admin-tool:cache-online-users')->everyMinute();
+   }
+   ```
+   
+   同时，需要在服务器定时任务中，加入如下配置
+   ```$php
+   * * * * * php /home/vagrant/blade_package/artisan schedule:run >> /dev/null 2>&1
+   ```
 
-        return parent::index();
-    }
-```
+ - 因为本项目自带日志记录，用户的每一步操作都会记录下来。为了避免响应过慢的问题，可以开启异步记录，提升响应速度。
+   想要修改为异步，只需要将 `.env` 文件中的 `QUEUE_CONNECTION=sync` 修改为 `QUEUE_CONNECTION=redis`
+   当然，要使用redis，前提是已经加入PRedis包或者Redis服务
+
 
 ## 相关仓库
 

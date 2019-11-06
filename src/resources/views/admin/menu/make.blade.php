@@ -58,13 +58,13 @@
 
 @section('css')
 
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/nestable/jquery.nestable.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('admin_panel/assets/nestable/jquery.nestable.css')}}"/>
     <style>
 
     </style>
 @endsection
 
 @section('js')
-    <script src="{{asset('assets/nestable/jquery.nestable.js')}}"></script>
-    <script src="{{asset('js/nestable.js?v=20191029')}}"></script>
+    <script src="{{asset('admin_panel/assets/nestable/jquery.nestable.js')}}"></script>
+    <script src="{{asset('admin_panel/js/nestable.js?v=20191029')}}"></script>
 @endsection

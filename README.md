@@ -39,7 +39,7 @@ What Include：
 2. Add more than one rules to a role .
 3. Menus can be different as it depends on the rules the user have .
 4. Write your new rules in the `routes/web.php` and it can be add in the program through one button
-5. Record the operation, you can choose to use job to do it sync
+5. Record the operation, you can choose to use job to do it sync/async
 6. Backend ui panel
 
 ## Installation
@@ -56,7 +56,6 @@ $ php artisan vendor:publish
 ```
 
 Build the database and run the seeder
-根目录下运行数据库迁移填充命令
 ```sh
 $ php artisan migrate:refresh --seed
 ```
@@ -65,43 +64,62 @@ That's it !
 
 ## How to use
 
-The default of the backend route is `/admin`, this can be change though the `config/admin.php`
-The seeder have already make a super admin user , which account is below
-```sh
-account : admin@gmail.com
-password : admin&%@cv..
-```
+ - The default of the backend route is `/admin`, this can be change though the `config/admin.php`
+   The seeder have already make a super admin user , which account is below
+   ```sh
+   account : admin@gmail.com
+   password : admin&%@cv..
+   ```
 
-What's RBAC talk about is , assign one or more rules to a role and assign one or more roles to a user. We can controller rules with a role , which we normally do rather than a detail rule.
-So , there is few steps you have to do with your business logic
-1. finish your code and add your routes in the route/web.php like you normally do
-2. click the **Route Reload** . For example , we get the new route **admin.test**
-3. create or update your translate files in the path **resources/vendor/rrm/zh-cn/permission.php**
-4. assign this new route to a role , like **admin**
-5. if this new route is a menu function, you should create a new menu and rebuild the menu otherwise the new menu will not display
+ - What's RBAC talk about is , assign one or more rules to a role and assign one or more roles to a user. We can controller rules with a role , which we normally do rather than a detail rule.
+     So , there is few steps you have to do with your business logic
+     1. finish your code and add your routes in the route/web.php like you normally do
+     2. click the **Route Reload** . For example , we get the new route **admin.test**
+     3. create or update your translate files in the path **resources/vendor/rrm/zh-cn/permission.php**
+     4. assign this new route to a role , like **admin**
+     5. if this new route is a menu function, you should create a new menu and rebuild the menu otherwise the new menu will not display
+     
+ - If you want to rewrite the route , you should add below to you **route/web.php**
+   ```$php
+   # this is rewrite the route to your app/Http/Controllers/IndexController.php index()
+   
+   Route::prefix(config('admin.prefix'))->middleware([
+       'auth',
+       'admin'
+   ])->name('admin.')->group(function () {
+       Route::get('/', 'IndexController@index')->name('index');
+   });
+   ```
+   In your **app/Http/Controllers/IndexController.php** file ，you should add below 
+   ```$php
+   
+   public function index()
+   {
+       // put your code here !!!
+   
+       return parent::index();
+   }
+   ```
+
+ - To see the online-user in the right bar , you have to add command in the **app/Console.Kernel.php** file, like this
+   ```$php
+   protected function schedule(Schedule $schedule)
+   {
+       // $schedule->command('inspire')
+       //          ->hourly();
+       $schedule->command('admin-tool:cache-online-users')->everyMinute();
+   }
+   ```
+   
+   And Remember To Add Command In Your Server
+   ```$php
+   * * * * * php /home/vagrant/blade_package/artisan schedule:run >> /dev/null 2>&1
+   ```
+
+ - Since it record every step user did on panel, if you want to do it async, you can change the key val `QUEUE_CONNECTION=sync` in `.env` files to `QUEUE_CONNECTION=redis`
+   This will make the recorder use jobs to async log the operations which will be faster. Of course you have to add Redis or PRedis package first 
 
 
-If you want to rewrite the route , you should add below to you **route/web.php**
-```$php
-# this is rewrite the route to your app/Http/Controllers/IndexController.php index()
-
-Route::prefix(config('admin.prefix'))->middleware([
-    'auth',
-    'admin'
-])->name('admin.')->group(function () {
-    Route::get('/', 'IndexController@index')->name('index');
-});
-```
-In your **app/Http/Controllers/IndexController.php** file ，you should add below 
-```$php
-
-public function index()
-    {
-        // put your code here !!!
-
-        return parent::index();
-    }
-```
 ## Related Efforts
 
 - [Laravel Permission](https://github.com/spatie/laravel-permission.git) - Associate users with permissions and roles

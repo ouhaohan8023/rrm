@@ -176,7 +176,7 @@
                     <section class="panel">
                         <div class="panel-body">
                             <a href="#" class="task-thumb">
-                                <img src="{{ asset('img/avatar1.jpg') }}" alt="">
+                                <img src="{{ asset('admin_panel/img/avatar1.jpg') }}" alt="">
                             </a>
                             <div class="task-thumb-details">
                                 <h1><a href="#">Anjelina Joli</a></h1>
@@ -350,19 +350,19 @@
                                                 <p><a href="#">Anjelina Joli</a> added new album <span><a href="#" class="blue">PARTY TIME</a></span></p>
                                                 <div class="album">
                                                     <a href="#">
-                                                        <img alt="" src="{{ asset('img/sm-img-1.jpg') }}">
+                                                        <img alt="" src="{{ asset('admin_panel/img/sm-img-1.jpg') }}">
                                                     </a>
                                                     <a href="#">
-                                                        <img alt="" src="{{ asset('img/sm-img-2.jpg') }}">
+                                                        <img alt="" src="{{ asset('admin_panel/img/sm-img-2.jpg') }}">
                                                     </a>
                                                     <a href="#">
-                                                        <img alt="" src="{{ asset('img/sm-img-3.jpg') }}">
+                                                        <img alt="" src="{{ asset('admin_panel/img/sm-img-3.jpg') }}">
                                                     </a>
                                                     <a href="#">
-                                                        <img alt="" src="{{ asset('img/sm-img-1.jpg') }}">
+                                                        <img alt="" src="{{ asset('admin_panel/img/sm-img-1.jpg') }}">
                                                     </a>
                                                     <a href="#">
-                                                        <img alt="" src="{{ asset('img/sm-img-2.jpg') }}">
+                                                        <img alt="" src="{{ asset('admin_panel/img/sm-img-2.jpg') }}">
                                                     </a>
                                                 </div>
                                             </div>
@@ -543,7 +543,7 @@
                         <aside class="post-highlight yellow v-align">
                             <div class="panel-body text-center">
                                 <div class="pro-thumb">
-                                    <img src="{{ asset('img/ring.jpg') }}" alt="">
+                                    <img src="{{ asset('admin_panel/img/ring.jpg') }}" alt="">
                                 </div>
                             </div>
                         </aside>
@@ -617,7 +617,7 @@
                                     <div class="panel-body">
                                         <h4>Jonathan Smith</h4>
                                         <div class="follow-ava">
-                                            <img src="{{ asset('img/follower-avatar.jpg') }}" alt="">
+                                            <img src="{{ asset('admin_panel/img/follower-avatar.jpg') }}" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -683,8 +683,8 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}" type="text/css">
-    <link href="{{ asset('assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css') }}" rel="stylesheet" type="text/css"
+    <link rel="stylesheet" href="{{ asset('admin_panel/css/owl.carousel.css') }}" type="text/css">
+    <link href="{{ asset('admin_panel/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css') }}" rel="stylesheet" type="text/css"
 
     <style>
 
@@ -692,13 +692,13 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('js/jquery.sparkline.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js') }}"></script>
-    <script src="{{ asset('js/owl.carousel.js') }}"></script>
-    <script src="{{ asset('js/respond.min.js') }}"></script>
-    <script src="{{ asset('js/sparkline-chart.js') }}"></script>
-    <script src="{{ asset('js/easy-pie-chart.js') }}"></script>
-    <script src="{{ asset('js/count.js') }}"></script>
+    <script src="{{ asset('admin_panel/js/jquery.sparkline.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('admin_panel/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js') }}"></script>
+    <script src="{{ asset('admin_panel/js/owl.carousel.js') }}"></script>
+    <script src="{{ asset('admin_panel/js/respond.min.js') }}"></script>
+    <script src="{{ asset('admin_panel/js/sparkline-chart.js') }}"></script>
+    <script src="{{ asset('admin_panel/js/easy-pie-chart.js') }}"></script>
+    <script src="{{ asset('admin_panel/js/count.js') }}"></script>
     <script>
 	    //owl carousel
 	    $(document).ready(function() {

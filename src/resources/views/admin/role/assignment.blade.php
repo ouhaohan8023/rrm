@@ -48,7 +48,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/jquery-multi-select/css/multi-select.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('admin_panel/assets/jquery-multi-select/css/multi-select.css')}}"/>
     <style>
         .ms-container {
             width: 100%;
@@ -56,7 +56,7 @@
     </style>
 @endsection
 @section('js')
-    <script type="text/javascript" src="{{asset('assets/jquery-multi-select/js/jquery.multi-select.js')}}"></script>
+    <script type="text/javascript" src="{{asset('admin_panel/assets/jquery-multi-select/js/jquery.multi-select.js')}}"></script>
     <script>
 			$('#my_multi_select1').multiSelect();
     </script>

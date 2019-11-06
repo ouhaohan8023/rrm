@@ -4,7 +4,9 @@ namespace OhhInk\Rrm;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use OhhInk\Rrm\Commands\CacheOnlineUsers;
 use OhhInk\Rrm\Middleware\Admin;
 
 class RrmServiceProvider extends ServiceProvider
@@ -16,9 +18,10 @@ class RrmServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(
-            __DIR__.'/config/filesystems.php', 'filesystems'
-        );
+        $this->mergeConfigFrom(__DIR__.'/config/filesystems.php', 'filesystems');
+        $this->mergeConfigFrom(__DIR__.'/config/database.php', 'database');
+        // 使用基于类方法的 composers...
+        View::composer('rrm::admin.layout.right-bar', 'OhhInk\Rrm\ViewComposers\RightBar');
     }
 
     /**
@@ -29,13 +32,13 @@ class RrmServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/config/admin.php' => config_path('admin.php'),
-//            __DIR__.'/config/permission.php' => config_path('permission.php'),
+            __DIR__.'/config/admin.php'       => config_path('admin.php'),
+            //            __DIR__.'/config/permission.php' => config_path('permission.php'),
             __DIR__.'/config/filesystems.php' => config_path('filesystems.php'),
         ], 'config');
 
         $this->publishes([
-            __DIR__.'/public/assets' => public_path('./'),
+            __DIR__.'/public' => public_path('./'),
         ], 'public');
 
         $this->publishes([
@@ -46,20 +49,27 @@ class RrmServiceProvider extends ServiceProvider
             __DIR__.'/resources/lang' => resource_path('./vendor/rrm/'),
         ], 'lang');
 
-//        $this->publishes([
-//            __DIR__.'/view/admin' => resource_path('views/admin'),
-//        ], 'views');
+        //        $this->publishes([
+        //            __DIR__.'/view/admin' => resource_path('views/admin'),
+        //        ], 'views');
 
 
         $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'rrm');
         $this->loadRoutesFrom(__DIR__.'/routes/admin.php');
         $this->loadViewsFrom(__DIR__.'/resources/views', 'rrm');
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
-        $this->app['router']->aliasMiddleware('admin' , Admin::class);
+        $this->app['router']->aliasMiddleware('admin', Admin::class);
 
+        // give all right to super admin
         Gate::before(function ($user, $ability) {
             return $user->hasRole(config('admin.super_admin')) ? true : null;
         });
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                CacheOnlineUsers::class,
+            ]);
+        }
     }
 
     /**
@@ -72,7 +82,7 @@ class RrmServiceProvider extends ServiceProvider
     protected function mergeConfigFrom($path, $key)
     {
         $config = $this->app['config']->get($key, []);
-        $this->app['config']->set($key, $this->mergeConfig(require $path, $config));
+        $this->app['config']->set($key, $this->mergeConfig($config, require $path));
     }
 
     /**
@@ -86,10 +96,10 @@ class RrmServiceProvider extends ServiceProvider
     {
         $array = array_merge($original, $merging);
         foreach ($original as $key => $value) {
-            if (! is_array($value)) {
+            if (!is_array($value)) {
                 continue;
             }
-            if (! Arr::exists($merging, $key)) {
+            if (!Arr::exists($merging, $key)) {
                 continue;
             }
             if (is_numeric($key)) {
