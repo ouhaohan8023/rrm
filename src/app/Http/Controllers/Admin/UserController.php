@@ -81,7 +81,7 @@ class UserController extends BaseController
             $data = request()->all();
             if ($request->file('avatar')) {
                 $fileName = date('YmdHis').$data['name'].rand(10000, 99999).'.'.$request->file('avatar')->extension();
-                $filePath = './admin_panel/avatar/'.$fileName;
+                $filePath = './avatar/'.$fileName;
                 Storage::putFileAs('./public/avatar', $request->file('avatar'), $fileName);
             } else {
                 $filePath = './admin_panel/avatar/avatar.png';
