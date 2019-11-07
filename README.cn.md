@@ -150,6 +150,7 @@ QUEUE_CONNECTION=redis
    想要修改为异步，只需要将 `.env` 文件中的 `QUEUE_CONNECTION=sync` 修改为 `QUEUE_CONNECTION=redis`
    当然，要使用redis，前提是已经加入PRedis包或者Redis服务
 
+- 如果你想修改无权限报错页面(500)，你可以创建 **resource/views/vendor/rrm/500.blade.php** 文件来重写它
 
 ## 相关仓库
 

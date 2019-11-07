@@ -2,6 +2,7 @@
 
 namespace OhhInk\Rrm\Admin;
 
+use OhhInk\Rrm\ValidationForZhCn;
 use Spatie\Permission\Models\Role;
 use OhhInk\Rrm\Model\User;
 use Illuminate\Http\Request;
@@ -14,6 +15,8 @@ use Illuminate\Validation\Rule;
 
 class UserController extends BaseController
 {
+    use ValidationForZhCn;
+
     /**
      * Create a new controller instance.
      *
@@ -74,11 +77,16 @@ class UserController extends BaseController
                 'email'    => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
                 'avatar'   => ['image']
-            ]);
+            ], $this->message(),$this->attribute());
             $data = request()->all();
-            $fileName = date('YmdHis').$data['name'].rand(10000, 99999).'.'.$request->file('avatar')->extension();
-            $filePath = './avatar/'.$fileName;
-            Storage::putFileAs('./public/avatar', $request->file('avatar'), $fileName);
+            if ($request->file('avatar')) {
+                $fileName = date('YmdHis').$data['name'].rand(10000, 99999).'.'.$request->file('avatar')->extension();
+                $filePath = './admin_panel/avatar/'.$fileName;
+                Storage::putFileAs('./public/avatar', $request->file('avatar'), $fileName);
+            } else {
+                $filePath = './admin_panel/avatar/avatar.png';
+            }
+
             $user = User::create([
                 'name'     => $data['name'],
                 'email'    => $data['email'],
@@ -117,7 +125,7 @@ class UserController extends BaseController
                 ],
                 'password' => ['string', 'min:8', 'confirmed'],
                 'avatar'   => ['image']
-            ]);
+            ], $this->message(),$this->attribute());
 
             $user->name = $data['name'];
             $user->email = $data['email'];

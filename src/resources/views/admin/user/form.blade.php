@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="form-group @error('password') has-error @enderror">
                                     <label for="password">@lang('rrm::user.password') @if(request('id'))
-                                            【@lang("user.don't need to enter if don't change")】 @endif</label>
+                                            【@lang("rrm::user.don't need to enter if don't change")】 @endif</label>
                                     <input type="password" class="form-control" id="password" name="password">
                                     @error('password')
                                     <span class="help-block" role="alert">

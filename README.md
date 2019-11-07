@@ -128,6 +128,7 @@ That's it !
  - Since it record every step user did on panel, if you want to do it async, you can change the key val `QUEUE_CONNECTION=sync` in `.env` files to `QUEUE_CONNECTION=redis`
    This will make the recorder use jobs to async log the operations which will be faster. Of course you have to add Redis or PRedis package first 
 
+- if you want to change **500** page, you can create a **resource/views/vendor/rrm/500.blade.php** to rewrite that. 
 
 ## Related Efforts
 

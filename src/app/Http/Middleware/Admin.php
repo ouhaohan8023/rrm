@@ -30,7 +30,7 @@ class Admin extends Middleware
             LogsJob::dispatch(Auth::user(),$request)->onQueue('logs');
             return $next($request);
         } else {
-            dd(404);
+            return redirect()->route('error');
         }
     }
 }

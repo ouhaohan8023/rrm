@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\App;
 Route::group(['middleware' => ['web']], function () {
 
     Route::get('lang/{locale}', 'OhhInk\Rrm\Admin\IndexController@setLang');
+    Route::get('error', 'OhhInk\Rrm\Admin\IndexController@error')->name('error');
 
     Route::namespace('OhhInk\Rrm\Auth')->group(function () {
         Route::get('login/{lang?}', 'LoginController@showLoginForm')->name('login');

@@ -34,5 +34,9 @@ class IndexController extends BaseController
         Cache::put('user_lang_'.Auth::user()->id,$lang);
         return Redirect::back();
     }
+
+    public function error(){
+        return view('rrm::500');
+    }
 }
 
