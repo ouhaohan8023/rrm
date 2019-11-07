@@ -1,15 +1,16 @@
 <?php
 
 return [
-    'model'    => 'model',
-    'name'     => 'name',
-    'url'      => 'url',
+    'model'    => 'Model',
+    'name'     => 'Name',
+    'url'      => 'Url',
 
     ### 以下为所有路由翻译
     'home'     => 'Front Index',
     'login'    => 'Login',
     'logout'   => 'Logout',
     'register' => 'Register',
+    'error'    => 'No Right To Pass 500',
     'admin'    => [
         'index'      => 'Admin Index',
         'test'       => 'Admin Test',

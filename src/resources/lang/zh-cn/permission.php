@@ -10,6 +10,7 @@ return [
     'login'    => '登陆',
     'logout'   => '登出',
     'register' => '注册',
+    'error'    => '无权限报错页面',
     'admin'    => [
         'index'      => '后台首页',
         'test'       => '测试路由',

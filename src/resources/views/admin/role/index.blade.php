@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <section class="panel">
-                        @include('rrm::admin.layout.table_header',['model'=>'rrm::role.model','create'=>route('admin.role.create')])
+                        @include('rrm::admin.layout.table_header',['model'=>'rrm::role.model','create'=>'admin.role.create'])
                         <table class="table table-striped table-advance table-hover">
                             <thead>
                             <tr>
@@ -29,14 +29,20 @@
                                     <td>{{$v['created_at']}}</td>
                                     <td>{{$v['updated_at']}}</td>
                                     <td>
-                                        <a href="{{route('admin.role.assignment', ['id' => $v['id']])}}"
-                                           class="btn btn-success btn-xs">@lang('rrm::base.assignment')@lang('rrm::permission.model')</a>
-                                        <a href="{{route('admin.role.update',['id' => $v['id']])}}"
-                                           class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
-                                        <button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal6"
-                                                onclick="deleteData({{$v['id']}},'{{__('role.'.$v['name'])}}')"><i
-                                                class="fa fa-trash-o "></i>
-                                        </button>
+                                        @can('admin.role.assignment')
+                                            <a href="{{route('admin.role.assignment', ['id' => $v['id']])}}"
+                                               class="btn btn-success btn-xs">@lang('rrm::base.assignment')@lang('rrm::permission.model')</a>
+                                        @endcan
+                                        @can('admin.role.update')
+                                            <a href="{{route('admin.role.update',['id' => $v['id']])}}"
+                                               class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                                        @endcan
+                                        @can('admin.role.delete')
+                                            <button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal6"
+                                                    onclick="deleteData({{$v['id']}},'{{__('role.'.$v['name'])}}')"><i
+                                                    class="fa fa-trash-o "></i>
+                                            </button>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

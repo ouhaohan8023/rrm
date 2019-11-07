@@ -6,16 +6,16 @@
                 <form method="post" action="{{$action}}">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">@lang('base.delete confirm',['model'=>__($model)])</h4>
+                        <h4 class="modal-title">@lang('rrm::base.delete confirm',['model'=>__($model)])</h4>
                     </div>
                     <div class="modal-body">
                         @csrf
-                        <div>@lang('base.delete confirm',['model'=>__($model)])<span id="model-body-text"></span></div>
+                        <div>@lang('rrm::base.delete confirm',['model'=>__($model)])<span id="model-body-text"></span></div>
                         <input name="id" id="id" hidden/>
                     </div>
                     <div class="modal-footer">
-                        <button data-dismiss="modal" class="btn btn-default" type="button">@lang('base.close')</button>
-                        <button class="btn btn-warning" type="submit" id="confirmBtn"> @lang('base.confirm')</button>
+                        <button data-dismiss="modal" class="btn btn-default" type="button">@lang('rrm::base.close')</button>
+                        <button class="btn btn-warning" type="submit" id="confirmBtn"> @lang('rrm::base.confirm')</button>
                     </div>
                 </form>
             </div>
@@ -33,7 +33,6 @@
 			})
 
 			function deleteData(id, text) {
-				console.log(id, text)
 				$('#model-body-text').html(text);
 				$('#id').val(id);
 			}

@@ -1394,7 +1394,7 @@
 </head>
 
 <body translate=&quot;no&quot;>
-<h1>Oh! You shouldn't come here, Please check your role!</h1>
+<h1 style="right: 25%">Oh! You shouldn't come here, Please check your role! <a href="/admin"> <b>Click here to GO BACK !</b> </a></h1>
 <div class='post'></div>
 <div class='outer'>
     <div class='wrap'>

@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <section class="panel">
-                        @include('rrm::admin.layout.table_header',['model'=>'rrm::menu.model','create'=>route('admin.menu.create')])
+                        @include('rrm::admin.layout.table_header',['model'=>'rrm::menu.model','create'=>'admin.menu.create'])
                         <table class="table table-striped table-advance table-hover">
                             <thead>
                             <tr>
@@ -31,11 +31,16 @@
                                     <td>{{$v['created_at']}}</td>
                                     <td>{{$v['updated_at']}}</td>
                                     <td>
-                                        <a href="{{route('admin.menu.update',['id' => $v['id']])}}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
-                                        <button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal6"
-                                                onclick="deleteData({{$v['id']}},'【{{$v['name']}}】')"><i
-                                                class="fa fa-trash-o "></i>
-                                        </button>
+                                        @can('admin.menu.update')
+                                            <a href="{{route('admin.menu.update',['id' => $v['id']])}}"
+                                               class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                                        @endcan
+                                        @can('admin.menu.delete')
+                                            <button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal6"
+                                                    onclick="deleteData({{$v['id']}},'【{{$v['name']}}】')"><i
+                                                    class="fa fa-trash-o "></i>
+                                            </button>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach
