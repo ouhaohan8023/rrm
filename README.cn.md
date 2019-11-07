@@ -68,7 +68,7 @@
 
 修改配置文件`.env`
 ```$xslt
-# change database and key
+# change database, and key
 # change cache
 CACHE_DRIVER=redis
 REDIS_CLIENT=predis
@@ -90,6 +90,12 @@ $ php artisan vendor:publish --tag=seeds --force
 根目录下运行数据库迁移填充命令
 ```sh
 $ php artisan migrate:refresh --seed
+```
+
+设置文件夹权限和软连接
+```$xslt
+$ chmod -R 777 storage
+$ php artisan storage:link
 ```
 
 至此，安装完毕
@@ -153,7 +159,27 @@ $ php artisan migrate:refresh --seed
    想要修改为异步，只需要将 `.env` 文件中的 `QUEUE_CONNECTION=sync` 修改为 `QUEUE_CONNECTION=redis`
    当然，要使用redis，前提是已经加入PRedis包或者Redis服务
 
-- 如果你想修改无权限报错页面(500)，你可以创建 **resource/views/vendor/rrm/500.blade.php** 文件来重写它
+ - 如果你想修改无权限报错页面(500)，你可以创建 **resource/views/vendor/rrm/500.blade.php** 文件来重写它
+
+ - 监听队列命令 
+    ```$php
+    php artisan queue:work --queue=logs --sleep=3 --tries=3
+   
+   # 建议使用supervisor
+   # supervisor配置文件 laravel-worker.conf
+   
+   [program:logs]
+   process_name=%(program_name)s_%(process_num)02d
+   command=php path_to/artisan queue:work --queue=logs --sleep=3 --tries=3
+   autostart=true
+   autorestart=true
+   user=root
+   numprocs=2
+   redirect_stderr=true
+   stdout_logfile=path_to/supervisor/logs.log
+   
+   保存之后，运行 supervisorctl reload 加载配置
+    ```
 
 ## 相关仓库
 
