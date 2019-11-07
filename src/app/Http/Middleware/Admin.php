@@ -2,6 +2,8 @@
 
 namespace OhhInk\Rrm\Middleware;
 
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cache;
 use OhhInk\Rrm\Jobs\LogsJob;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +22,11 @@ class Admin extends Middleware
     public function handle($request, Closure $next, ...$guards)
     {
         if (Auth::user()->can(Route::currentRouteName())) {
+            $lang = Cache::rememberForever('user_lang_'.Auth::user()->id, function() {
+                return false;
+            });
+            $lang?App::setLocale($lang):'';
+
             LogsJob::dispatch(Auth::user(),$request)->onQueue('logs');
             return $next($request);
         } else {

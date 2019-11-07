@@ -3,6 +3,7 @@
 namespace OhhInk\Rrm\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\App;
 use OhhInk\Rrm\Model\OperationLogs;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -45,8 +46,11 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showLoginForm()
+    public function showLoginForm($lang=false)
     {
+        if ($lang) {
+            App::setLocale($lang);
+        }
         return view('rrm::auth.login');
     }
 

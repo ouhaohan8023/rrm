@@ -6,10 +6,10 @@ return [
     'url'      => 'url',
 
     ### 以下为所有路由翻译
-    'home'     => 'home',
-    'login'    => 'login',
-    'logout'   => 'logout',
-    'register' => 'register',
+    'home'     => 'Front Index',
+    'login'    => 'Login',
+    'logout'   => 'Logout',
+    'register' => 'Register',
     'admin'    => [
         'index'      => 'Admin Index',
         'test'       => 'Admin Test',

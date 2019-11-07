@@ -16,7 +16,6 @@ class CreateAdminMenusTable extends Migration
         $this->down();
         Schema::create('admin_menus', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
             $table->string('url');
             $table->string('icon')->nullable();
             $table->timestamps();

@@ -24,6 +24,7 @@ class RrmServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/config/auth.php', 'auth');
         // 使用基于类方法的 composers...
         View::composer('rrm::admin.layout.right-bar', 'OhhInk\Rrm\ViewComposers\RightBar');
+        View::composer('rrm::admin.layout.header', 'OhhInk\Rrm\ViewComposers\Header');
     }
 
     /**

@@ -1,9 +1,14 @@
 <?php
 
 //Auth::routes();
+use Illuminate\Support\Facades\App;
+
 Route::group(['middleware' => ['web']], function () {
+
+    Route::get('lang/{locale}', 'OhhInk\Rrm\Admin\IndexController@setLang');
+
     Route::namespace('OhhInk\Rrm\Auth')->group(function () {
-        Route::get('login', 'LoginController@showLoginForm')->name('login');
+        Route::get('login/{lang?}', 'LoginController@showLoginForm')->name('login');
         Route::post('login', 'LoginController@login');
         Route::post('logout', 'LoginController@logout')->name('logout');
         Route::get('register', 'RegisterController@showRegistrationForm')->name('register');

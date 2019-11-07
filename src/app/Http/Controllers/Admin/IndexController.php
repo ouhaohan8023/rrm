@@ -3,6 +3,10 @@
 namespace OhhInk\Rrm\Admin;
 
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redirect;
+
 class IndexController extends BaseController
 {
     /**
@@ -23,6 +27,12 @@ class IndexController extends BaseController
     public function index()
     {
         return view('rrm::admin.index');
+    }
+
+    public function setLang($lang)
+    {
+        Cache::put('user_lang_'.Auth::user()->id,$lang);
+        return Redirect::back();
     }
 }
 

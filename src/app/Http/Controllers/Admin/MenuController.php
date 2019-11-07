@@ -155,12 +155,12 @@ class MenuController extends BaseController
         $menu = '';
         foreach ($data as $k => $v) {
             if (isset($v['children'])) {
-                $menu .= '<li class="dd-item" data-id="'.$v['id'].'" data-name="'.$v['name'].'" data-url="'.$v['url'].'" data-icon="'.$v['icon'].'"><div class="dd-handle">'.$v['name'].'</div>';
+                $menu .= '<li class="dd-item" data-id="'.$v['id'].'" data-url="'.$v['url'].'" data-icon="'.$v['icon'].'"><div class="dd-handle">'.__('rrm::permission.'.$v['url']).'</div>';
                 $menu .= '<ol class="dd-list">';
                 $menu .= $this->buildMenuForMake($v['children']);
                 $menu .= '</ol></li>';
             } else {
-                $menu .= '<li class="dd-item" data-id="'.$v['id'].'" data-name="'.$v['name'].'" data-url="'.$v['url'].'" data-icon="'.$v['icon'].'"><div class="dd-handle">'.$v['name'].'</div></li>';
+                $menu .= '<li class="dd-item" data-id="'.$v['id'].'" data-url="'.$v['url'].'" data-icon="'.$v['icon'].'"><div class="dd-handle">'.__('rrm::permission.'.$v['url']).'</div></li>';
             }
         }
         return $menu;
@@ -200,7 +200,7 @@ class MenuController extends BaseController
 <li class="sub-menu dcjq-parent-li">
 <a href="javascript:;" class="dcjq-parent @if(doCurrentRoute(Route::currentRouteName()) == \''.$v["url"].'\') active @endif">
 <i class="'.$v['icon'].'"></i>
-<span>'.$v['name'].'</span>
+<span>@lang("rrm::permission.'.$v['url'].'")</span>
 </a>';
                 $menu .= '<ul class="sub @if(doCurrentRoute(Route::currentRouteName()) == \''.$v["url"].'\') style="display: block;" @endif">';
                 $menu .= $this->buildMenuForView($v['children'], true);
@@ -212,7 +212,7 @@ class MenuController extends BaseController
                     $menu .= '
                     @can("'.$v["url"].'")
                     <li @if(Route::currentRouteName() == "'.$v["url"].'") class="active" @endif>
-                    <a href="'.route($v['url']).'">'.$v['name'].'</a>
+                    <a href="'.route($v['url']).'">@lang("rrm::permission.'.$v['url'].'")</a>
                     </li>
                     @endcan
                     ';
@@ -222,7 +222,7 @@ class MenuController extends BaseController
                     <li>
                     <a @if(Route::currentRouteName() == "'.$v["url"].'") class="active" @endif href="'.route($v['url']).'">
                     <i class="'.$v['icon'].'"></i>
-                    <span>'.$v['name'].'</span>
+                    <span>@lang("rrm::permission.'.$v['url'].'")</span>
                     </a>
                     </li>
                     @endcan

@@ -34,6 +34,8 @@
     <script src="{{ asset('admin_panel/js/html5shiv.js') }}"></script>
     <script src="{{ asset('admin_panel/js/respond.min.js') }}"></script>
     <![endif]-->
+
+    @include('rrm::admin.layout.svg')
     @yield('css')
     @stack('css')
 </head>

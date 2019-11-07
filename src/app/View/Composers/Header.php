@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
-class RightBar
+class Header
 {
     /**
      * 创建一个新的属性composer.
@@ -25,9 +25,6 @@ class RightBar
      */
     public function compose(View $view)
     {
-        $onlineUsers = Cache::get('online-users');
-        $view->with('online_users', $onlineUsers);
-
         $locale = App::getLocale();
         $view->with('lang', $locale);
     }

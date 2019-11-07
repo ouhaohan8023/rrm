@@ -67,6 +67,14 @@
 {{--                </span>--}}
             </label>
             <button class="btn btn-lg btn-login btn-block" type="submit">@lang('rrm::base.Sign in')</button>
+            <div>
+                <a href="/login/en">
+                    <span>English</span>
+                </a>
+                <a href="/login/zh-cn">
+                    <span>中文</span>
+                </a>
+            </div>
         </div>
     </form>
 
@@ -101,6 +109,7 @@
 <script src="admin/js/jquery.js"></script>
 <script src="admin/js/bootstrap.min.js"></script>
 
+@include('rrm::admin.layout.svg')
 
 </body>
 </html>
