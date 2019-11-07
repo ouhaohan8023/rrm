@@ -34,6 +34,8 @@ class RrmServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);
+
         $this->publishes([
             __DIR__.'/config/admin.php'       => config_path('admin.php'),
             //            __DIR__.'/config/permission.php' => config_path('permission.php'),

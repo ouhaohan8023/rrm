@@ -64,10 +64,21 @@
 
 ## 安装
 > 推荐使用在Laravel新项目
+> 记得先在php.ini中取消对`exec`，`shell_exec`，`proc*`等方法的限制
+
+修改配置文件`.env`
+```$xslt
+# change database and key
+# change cache
+CACHE_DRIVER=redis
+REDIS_CLIENT=predis
+# suggest
+QUEUE_CONNECTION=redis
+```
 
 在项目根目录运行 [composer](https://getcomposer.org/)
 ```sh
-$ composer install ohhink/rrm
+$ composer require ohhink/rrm
 ```
 
 根目录下运行资源发布，此命令会增加配置文件(`admin.php`,`filesystems.php`,`permission.php`)，以及前端资源文件和数据库填充文件
@@ -79,14 +90,6 @@ $ php artisan vendor:publish --tag=seeds --force
 根目录下运行数据库迁移填充命令
 ```sh
 $ php artisan migrate:refresh --seed
-```
-
-修改配置文件`.env`
-```$xslt
-CACHE_DRIVER=redis
-REDIS_CLIENT=predis
-# suggest
-QUEUE_CONNECTION=redis
 ```
 
 至此，安装完毕
