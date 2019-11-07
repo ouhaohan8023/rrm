@@ -212,7 +212,7 @@ class MenuController extends BaseController
                     $menu .= '
                     @can("'.$v["url"].'")
                     <li @if(Route::currentRouteName() == "'.$v["url"].'") class="active" @endif>
-                    <a href="'.route($v['url']).'">@lang("rrm::permission.'.$v['url'].'")</a>
+                    <a href="'.route($v['url'],[],false).'">@lang("rrm::permission.'.$v['url'].'")</a>
                     </li>
                     @endcan
                     ';
@@ -220,7 +220,7 @@ class MenuController extends BaseController
                     $menu .= '
                      @can("'.$v["url"].'")
                     <li>
-                    <a @if(Route::currentRouteName() == "'.$v["url"].'") class="active" @endif href="'.route($v['url']).'">
+                    <a @if(Route::currentRouteName() == "'.$v["url"].'") class="active" @endif href="'.route($v['url'],[],false).'">
                     <i class="'.$v['icon'].'"></i>
                     <span>@lang("rrm::permission.'.$v['url'].'")</span>
                     </a>
