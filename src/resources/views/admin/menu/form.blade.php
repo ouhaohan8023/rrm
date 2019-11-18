@@ -7,17 +7,21 @@
             <div class="row">
                 <div class="col-lg-12">
                     <section class="panel">
-                        @include('rrm::admin.layout.create_header',['model'=>'rrm::menu.model'])
+                        @if(request('id',false))
+                            @include('rrm::admin.layout.update_header',['model'=>'rrm::menu.model'])
+                        @else
+                            @include('rrm::admin.layout.create_header',['model'=>'rrm::menu.model'])
+                        @endif
                         <div class="panel-body">
                             <form role="form" method="post" action="{{request('id',false)?route('admin.menu.update',['id' => request('id')]):route('admin.menu.create')}}">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="text">@lang('rrm::menu.model')</label>
-                                    <input type="text" class="form-control" id="text" name="name" @isset($data['name']) value="{{$data['name']}}" @endisset>
+                                    <label for="name">@lang('rrm::menu.model')</label>
+                                    <input type="text" class="form-control" id="name" @isset($data['url']) value="{{__('rrm::permission.'.$data['url'])}}" @endisset>
                                 </div>
                                 <div class="form-group">
-                                    <label for="text">@lang('rrm::menu.icon')</label>
-                                    <input type="text" class="form-control" id="text" name="icon" @isset($data['icon']) value="{{$data['icon']}}" @endisset>
+                                    <label for="icon">@lang('rrm::menu.icon')</label>
+                                    <input type="text" class="form-control" id="icon" name="icon" @isset($data['icon']) value="{{$data['icon']}}" @endisset>
                                 </div>
                                 <div class="form-group">
                                     <label>@lang('rrm::menu.permission')</label>
@@ -52,7 +56,8 @@
     <script>
       function autoName() {
         var name = $("#select option:selected").text();
-        $("input[name='name']").val(name);
+        name = name.slice(0,name.indexOf('【'))
+        $("#name").val(name);
       }
     </script>
 @endsection

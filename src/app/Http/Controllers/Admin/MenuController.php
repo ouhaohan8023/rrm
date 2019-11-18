@@ -78,7 +78,6 @@ class MenuController extends BaseController
         }
         if (request()->method() == 'POST') {
             $data = request()->input();
-            $menu->name = $data['name'];
             $menu->icon = $data['icon'];
             $menu->url = $data['url'];
             $update = $menu->save();
@@ -251,7 +250,6 @@ class MenuController extends BaseController
     {
         foreach ($cache as $k => $v) {
             if ($v['id'] == $id) {
-                $cache[$k]['name'] = $update['name'];
                 $cache[$k]['icon'] = $update['icon'];
                 $cache[$k]['url'] = $update['url'];
             } else {

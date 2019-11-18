@@ -12,40 +12,33 @@
             <div class="row">
                 <div class="col-lg-12">
                     <section class="panel">
-                        @include('rrm::admin.layout.table_header',['model'=>'rrm::menu.model','create'=>'admin.menu.create'])
+                        <header class="panel-heading">
+                            @lang('rrm::base.Controller',['model'=>__('rrm::op-log.model')])
+                            <a href="{{route('admin.op-log.clear')}}" type="button"
+                               class="btn btn-success btn-table-right">@lang('rrm::permission.admin.op-log.clear')</a>
+                        </header>
                         <table class="table table-striped table-advance table-hover">
                             <thead>
                             <tr>
-                                <th><i class="fa fa-bullhorn"></i> @lang('rrm::menu.name')</th>
-                                <th><i class="fa fa-asterisk"></i> @lang('rrm::menu.icon')</th>
+                                <th><i class="fa fa-bullhorn"></i> @lang('rrm::op-log.name')</th>
+                                <th><i class="fa fa-bullhorn"></i> @lang('rrm::op-log.url')</th>
+                                <th><i class="fa fa-bullhorn"></i> @lang('rrm::op-log.ip')</th>
+                                <th><i class="fa fa-bullhorn"></i> @lang('rrm::op-log.data')</th>
                                 <th><i class="fa fa-question-circle"></i> @lang('rrm::base.created_at')</th>
                                 <th><i class="fa fa-bookmark"></i> @lang('rrm::base.updated_at')</th>
-                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($data as $v)
                                 <tr>
-                                    <td><a href="#">{{__('rrm::permission.'.$v['url'])}}</a></td>
-                                    <td><i class="{{$v['icon']}}"></i> &nbsp; {{$v['icon']}}</td>
+                                    <td>{{$v['name']}}</td>
+                                    <td>{{$v['url']}}</td>
+                                    <td>{{$v['ip']}}</td>
+                                    <td><a href="{{route('admin.op-log.view',['id'=>$v['id']])}}">{{$v['data']}}</a></td>
                                     <td>{{$v['created_at']}}</td>
                                     <td>{{$v['updated_at']}}</td>
-                                    <td>
-                                        @can('admin.menu.update')
-                                            <a href="{{route('admin.menu.update',['id' => $v['id']])}}"
-                                               class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
-                                        @endcan
-                                        @can('admin.menu.delete')
-                                            <button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal6"
-                                                    onclick="deleteData({{$v['id']}},'【{{__('rrm::permission.'.$v['url'])}}】')"><i
-                                                    class="fa fa-trash-o "></i>
-                                            </button>
-                                        @endcan
-                                    </td>
                                 </tr>
                             @endforeach
-
-
                             </tbody>
                         </table>
                         @include('rrm::admin.layout.pagination',['data'=>$data])
@@ -54,12 +47,12 @@
             </div>
         </section>
     </section>
-
-    @include('rrm::admin.layout.table_modal',['id'=>'myModal6','action'=>route('admin.menu.delete'),'model'=>'rrm::menu.model'])
 @endsection
 
 @section('css')
     <style>
-
+        .btn-table-right {
+            float: right;
+        }
     </style>
 @endsection

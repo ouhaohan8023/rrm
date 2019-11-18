@@ -2,7 +2,7 @@
 
 return [
     'model'                               => 'User',
-    'assignment role for'                 => 'assignment role for :user ',
+    'assignment role for'                 => 'Assignment role for :user ',
     'role'                                => 'Role',
     'name'                                => 'Name',
     'email'                               => 'Account/Email',

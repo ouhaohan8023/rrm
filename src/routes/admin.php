@@ -62,6 +62,12 @@ Route::group(['middleware' => ['web']], function () {
             Route::any('/make', 'MenuController@make')->name('make');
             Route::any('/clear', 'MenuController@clear')->name('clear');
         });
+        Route::prefix('op-log')->name('op-log.')->group(function () {
+            Route::get('/', 'OpLogsController@index')->name('');
+            Route::get('/index', 'OpLogsController@index')->name('index');
+            Route::get('/view/{id}', 'OpLogsController@view')->name('view');
+            Route::any('/clear', 'OpLogsController@clear')->name('clear');
+        });
     });
 });
 

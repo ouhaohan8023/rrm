@@ -45,6 +45,12 @@ return [
             'make'   => 'Menu Make',
             'clear'  => 'Menu Clear',
             'update' => 'Menu Update'
+        ],
+        'op-log'     => [
+            ''      => 'Operation Log',
+            'index' => 'Log List',
+            'view'  => 'Log View',
+            'clear' => 'Log Clear'
         ]
     ],
     //        'password' => [

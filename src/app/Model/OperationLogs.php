@@ -67,4 +67,12 @@ class OperationLogs extends Model
     {
         return Carbon::parse($value)->diffForHumans();
     }
+
+    public function getDataAttribute($value)
+    {
+        if (strlen($value)>20) {
+            $value=substr($value,0,20) . '...';
+        }
+        return $value;
+    }
 }
