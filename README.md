@@ -160,6 +160,34 @@ That's it !
    
    save and run ** supervisorctl reload ** to reload it
     ```
+   
+ - The layout of this package, you can use it though the follow code.
+   ```$php
+    @extends('rrm::admin.layout')
+    
+    @section('content')
+        <section id="main-content">
+            <section class="wrapper">
+                @if (Session::has('success'))
+                    @include('rrm::admin.layout.success',['msg'=>Session::get('success')])
+                @endif
+                @if (Session::has('error'))
+                    @include('rrm::admin.layout.error',['msg'=>Session::get('error')])
+                @endif
+                <div class="row">
+                    <div class="col-lg-12">
+    
+                    </div>
+                </div>
+            </section>
+        </section>
+    @endsection
+    
+    @section('js')
+    @endsection
+    @section('css')
+    @endsection
+    ```
 ## Related Efforts
 
 - [Laravel Permission](https://github.com/spatie/laravel-permission.git) - Associate users with permissions and roles

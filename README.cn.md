@@ -183,6 +183,34 @@ $ php artisan storage:link
    保存之后，运行 supervisorctl reload 加载配置
     ```
 
+ - 本项目后台模板，可以直接引用，只需在其中编写自己的业务逻辑页面
+   ```$php
+   @extends('rrm::admin.layout')
+   
+   @section('content')
+       <section id="main-content">
+           <section class="wrapper">
+               @if (Session::has('success'))
+                   @include('rrm::admin.layout.success',['msg'=>Session::get('success')])
+               @endif
+               @if (Session::has('error'))
+                   @include('rrm::admin.layout.error',['msg'=>Session::get('error')])
+               @endif
+               <div class="row">
+                   <div class="col-lg-12">
+                        
+                   </div>
+               </div>
+           </section>
+       </section>
+   @endsection
+   
+   @section('js')
+   @endsection
+   @section('css')
+   @endsection
+
+   ```
 ## 相关仓库
 
 - [Laravel Permission](https://github.com/spatie/laravel-permission.git) - Associate users with permissions and roles
