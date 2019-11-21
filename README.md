@@ -69,6 +69,8 @@ $ php artisan vendor:publish --tag=seeds --force
 
 Build the database and run the seeder
 ```sh
+# run autoload first to update the userseeder
+$ composer dump-autoload
 $ php artisan migrate:refresh --seed
 ```
 

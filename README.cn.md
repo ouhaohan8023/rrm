@@ -89,6 +89,8 @@ $ php artisan vendor:publish --tag=seeds --force
 
 根目录下运行数据库迁移填充命令
 ```sh
+# run autoload first to update the userseeder
+$ composer dump-autoload
 $ php artisan migrate:refresh --seed
 ```
 
