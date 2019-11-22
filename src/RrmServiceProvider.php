@@ -51,7 +51,7 @@ class RrmServiceProvider extends ServiceProvider
         ], 'seeds');
 
         $this->publishes([
-            __DIR__.'/resources/lang' => resource_path('./vendor/rrm/'),
+            __DIR__.'/resources/lang' => resource_path('lang/vendor/rrm/'),
         ], 'lang');
 
         //        $this->publishes([
