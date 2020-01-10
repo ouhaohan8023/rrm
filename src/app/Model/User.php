@@ -21,7 +21,8 @@ class User extends \App\User
         'name',
         'email',
         'password',
-        'avatar'
+        'avatar',
+        'is_test'
     ];
 
     /**
@@ -51,5 +52,10 @@ class User extends \App\User
             $str .= __('rrm::role.'.$v).',';
         }
         return rtrim($str, ',');
+    }
+
+    public static function findByEmail($email)
+    {
+        return self::query()->where('email',$email)->first();
     }
 }

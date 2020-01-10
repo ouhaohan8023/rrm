@@ -91,7 +91,8 @@ class UserController extends BaseController
                 'name'     => $data['name'],
                 'email'    => $data['email'],
                 'password' => Hash::make($data['password']),
-                'avatar'   => $filePath
+                'avatar'   => $filePath,
+                'is_test'  => Arr::get($data,'is_test',0)
             ]);
             if ($user) {
                 $success = __('rrm::user.model').__('rrm::base.create').__('rrm::base.success');
@@ -155,7 +156,7 @@ class UserController extends BaseController
     {
         $input = request()->input();
         $user = User::find($input['id']);
-        // 删除角色
+        // 删除用户
         if ($user) {
             // 删除角色-用户关联
             $user->syncRoles([]);
