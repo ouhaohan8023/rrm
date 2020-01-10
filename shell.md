@@ -8,7 +8,8 @@ php artisan vendor:publish --tag=public
 数据填充
 php artisan vendor:publish --tag=seeds
 
-
+admin 首页模板
+php artisan vendor:publish --tag=views --force
 
 
 强制迁移文件

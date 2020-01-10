@@ -67,7 +67,7 @@
 > 记得先在php.ini中取消对`exec`，`shell_exec`，`proc*`等方法的限制
 
 修改配置文件`.env`
-```$xslt
+```bash
 # change database, and key
 # change cache
 CACHE_DRIVER=redis
@@ -77,25 +77,30 @@ QUEUE_CONNECTION=redis
 ```
 
 在项目根目录运行 [composer](https://getcomposer.org/)
-```sh
+```bash
 $ composer require ohhink/rrm
 ```
 
 根目录下运行资源发布，此命令会增加配置文件(`admin.php`,`filesystems.php`,`permission.php`)，以及前端资源文件和数据库填充文件
-```sh
+```bash
 $ php artisan vendor:publish
 $ php artisan vendor:publish --tag=seeds --force
 ```
 
 根目录下运行数据库迁移填充命令
-```sh
+```bash
 # run autoload first to update the userseeder
 $ composer dump-autoload
 $ php artisan migrate:refresh --seed
 ```
 
+生成可替换的首页模板
+```bash
+$ php artisan vendor:publish --tag=views --force
+```
+
 设置文件夹权限和软连接
-```$xslt
+```bash
 $ chmod -R 777 storage
 $ php artisan storage:link
 ```
@@ -136,8 +141,10 @@ $ php artisan storage:link
    public function index()
    {
        // put your code here !!!
-   
-       return parent::index();
+       // recover the view in /resources/views/vendor/rrm/admin/index.blade.php
+       // OR you can just run command below, it will create blade files automatically
+       // php artisan vendor:publish --tag=views --force
+       return view('rrm::admin.index');
    }
    ```
 

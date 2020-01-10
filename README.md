@@ -47,7 +47,7 @@ What Include：
 > Remember to open `exec` ，`shell_exec`，`proc*` functions in `php.ini` 
 
 Update the local configure file `.env`
-```$xslt
+```bash
 # change database and key
 # change cache
 CACHE_DRIVER=redis
@@ -57,25 +57,30 @@ QUEUE_CONNECTION=redis
 ```
 
 Run the command in the root of your new laravel project with [composer](https://getcomposer.org/)
-```sh
+```bash
 $ composer require ohhink/rrm
 ```
 
 Publish the files , which include `admin.php`,`filesystems.php`,`permission.php` and front resource files and database seeds files
-```sh
+```bash
 $ php artisan vendor:publish
 $ php artisan vendor:publish --tag=seeds --force
 ```
 
 Build the database and run the seeder
-```sh
+```bash
 # run autoload first to update the userseeder
 $ composer dump-autoload
 $ php artisan migrate:refresh --seed
 ```
 
+Publish the admin index blade files
+```bash
+$ php artisan vendor:publish --tag=views --force
+```
+
 give folder right and soft-link
-```$xslt
+```bash
 $ chmod -R 777 storage
 $ php artisan storage:link
 ```
@@ -116,8 +121,10 @@ That's it !
    public function index()
    {
        // put your code here !!!
-   
-       return parent::index();
+       // recover the view in /resources/views/vendor/rrm/admin/index.blade.php
+       // OR you can just run command below, it will create blade files automatically
+       // php artisan vendor:publish --tag=views --force
+       return view('rrm::admin.index');
    }
    ```
 

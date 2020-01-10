@@ -54,9 +54,11 @@ class RrmServiceProvider extends ServiceProvider
             __DIR__.'/resources/lang' => resource_path('lang/vendor/rrm/'),
         ], 'lang');
 
-        //        $this->publishes([
-        //            __DIR__.'/view/admin' => resource_path('views/admin'),
-        //        ], 'views');
+        $this->publishes([
+            __DIR__.'/resources/views/admin/index.blade.php' => resource_path('views/vendor/rrm/admin/index.blade.php'),
+            __DIR__.'/resources/views/admin/layout/header.blade.php' => resource_path('views/vendor/rrm/admin/layout/header.blade.php'),
+            __DIR__.'/resources/views/admin/layout/footer.blade.php' => resource_path('views/vendor/rrm/admin/layout/footer.blade.php'),
+        ], 'views');
 
 
         $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'rrm');
