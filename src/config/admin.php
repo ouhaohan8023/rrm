@@ -6,11 +6,11 @@ return [
     # super admin role name
     'super_admin' => env('SUPER_ADMIN', 'super_admin'),
     # footer
-    'footer'      => '三养株式会社',
+    'footer'      => env('ADMIN_FOOTER', 'RRM'),
     # slips of per page
     'per_page'    => 15,
     # resource version
-    'resource_version' => 2019103002,
+    'resource_version' => env('ADMIN_RESOURCE_VERSION',20200101),
     # name of admin panel
     'admin_name' => env('APP_NAME', 'Laravel'),
     # name of admin panel header
