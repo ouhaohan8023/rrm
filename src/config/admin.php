@@ -16,5 +16,7 @@ return [
     # name of admin panel header
     'admin_header_part_1' => env('ADMIN_HEADER_PANEL_1', 'Lara'),
     'admin_header_part_2' => env('ADMIN_HEADER_PANEL_2', 'vel'),
+    # open Google Authenticator
+    'google_authenticator' => env('GOOGLE_AUTHENTICATOR',false)
 
 ];

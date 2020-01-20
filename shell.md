@@ -17,4 +17,19 @@ php artisan vendor:publish --tag=data  --force
 
 // 重建数据库并填充数据...
 php artisan migrate:refresh --seed
+
+// 本地测试包
+composer require ohhink/rrm:dev-master
+
+"repositories": [
+    {
+        "type": "path",
+        "url": "./package/ohh-ink/rrm"
+    }
+]
+
+// 删除composer缓存
+composer clear-cache
 ```
+
+

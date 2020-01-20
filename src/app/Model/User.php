@@ -58,4 +58,19 @@ class User extends \App\User
     {
         return self::query()->where('email',$email)->first();
     }
+
+    public function isBindGoogle()
+    {
+        if ($this->google) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function updateGoogle($code)
+    {
+        $this->google = $code;
+        $this->save();
+    }
 }

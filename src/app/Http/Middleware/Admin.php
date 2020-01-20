@@ -21,16 +21,22 @@ class Admin extends Middleware
      */
     public function handle($request, Closure $next, ...$guards)
     {
-        if (Auth::user()->can(Route::currentRouteName())) {
-            $lang = Cache::rememberForever('user_lang_'.Auth::user()->id, function() {
-                return false;
-            });
-            $lang?App::setLocale($lang):'';
-
-            LogsJob::dispatch(Auth::user(),$request)->onQueue('logs');
-            return $next($request);
+        // 判断是否开启google二次雅正，若开启切未绑定，则跳转至绑定页面
+        if (config('admin.google_authenticator') && !Auth::user()->isBindGoogle()) {
+            return redirect()->route('admin.bind');
         } else {
-            return redirect()->route('error');
+            if (Auth::user()->can(Route::currentRouteName())) {
+                $lang = Cache::rememberForever('user_lang_'.Auth::user()->id, function() {
+                    return false;
+                });
+                $lang?App::setLocale($lang):'';
+
+                LogsJob::dispatch(Auth::user(),$request)->onQueue('logs');
+                return $next($request);
+            } else {
+                return redirect()->route('error');
+            }
         }
+
     }
 }

@@ -21,7 +21,9 @@
     "require": {
         "php": "^7.2",
         "spatie/laravel-permission": "^3.0",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "earnp/laravel-google-authenticator": "dev-master",
+        "simplesoftwareio/simple-qrcode": "^2.0.0"
     },
     "require-dev": {
     },

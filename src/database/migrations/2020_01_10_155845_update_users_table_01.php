@@ -14,6 +14,7 @@ class UpdateUsersTable01 extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->string('google')->nullable()->comment('google 验证码');
             $table->tinyInteger('is_test')->default(0)->comment('phpunit测试用例，unit测试完成会被自动删除，业务逻辑请勿使用本字段');
         });
     }
@@ -26,7 +27,7 @@ class UpdateUsersTable01 extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['is_test']);
+            $table->dropColumn(['is_test','google']);
         });
     }
 }

@@ -24,6 +24,13 @@ Route::group(['middleware' => ['web']], function () {
 
     });
 
+    // 抛开权限认证
+    Route::prefix(config('admin.prefix'))->middleware([
+        'auth',
+    ])->namespace('OhhInk\Rrm\Admin')->name('admin.')->group(function () {
+        Route::any('/bind', 'IndexController@bind')->name('bind');
+    });
+
     Route::prefix(config('admin.prefix'))->middleware([
         'auth',
         'admin'

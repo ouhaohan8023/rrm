@@ -41,6 +41,7 @@ What Include：
 4. Write your new rules in the `routes/web.php` and it can be add in the program through one button
 5. Record the operation, you can choose to use job to do it sync/async
 6. Backend ui panel
+7. Google Authenticator
 
 ## Installation
 > Recommend to use new Laravel Project
@@ -54,6 +55,8 @@ CACHE_DRIVER=redis
 REDIS_CLIENT=predis
 # suggest
 QUEUE_CONNECTION=redis
+# google authenticator
+GOOGLE_AUTHENTICATOR=false
 ```
 
 Run the command in the root of your new laravel project with [composer](https://getcomposer.org/)
@@ -194,6 +197,26 @@ That's it !
     @endsection
     @section('css')
     @endsection
+    ```
+   
+ - Use Google Authenticator
+    ```$php
+    # First , add config to the file .env
+    GOOGLE_AUTHENTICATOR=true
+   
+    # After that, no matter which page the user going to visit , he will redirect to GOOGLE AUTHENTICATOR PAGE. 
+    # Follow the step and it will redirect to the normal page after register.
+    # If you what to vertify in your code , you can learn from the fake code.
+    public function index()
+    {
+         // $google code which is  registered before 
+         // $vertify code to be verified
+         if (\OhhInk\Rrm\Model\Google::CheckCode($google, $vertify)) {
+                 // pass
+         } else {
+                 // fail
+         }
+    }
     ```
 ## Related Efforts
 

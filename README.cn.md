@@ -61,6 +61,7 @@
 3. 一键更新最新权限
 4. 记录用户操作日志，可使用队列异步
 5. 后台界面
+6. Google Authenticator
 
 ## 安装
 > 推荐使用在Laravel新项目
@@ -74,6 +75,8 @@ CACHE_DRIVER=redis
 REDIS_CLIENT=predis
 # suggest
 QUEUE_CONNECTION=redis
+# google authenticator
+GOOGLE_AUTHENTICATOR=false
 ```
 
 在项目根目录运行 [composer](https://getcomposer.org/)
@@ -217,6 +220,25 @@ $ php artisan storage:link
    @section('css')
    @endsection
 
+   ```
+   
+ - 使用Google Authenticator
+   ```$php
+   # 首先，在env中加入配置
+   GOOGLE_AUTHENTICATOR=true
+   
+   # 当上述配置打开后，后台管理员访问任意页面均会跳转至Google Authenticator绑定页面，绑定后，才可进行下一步操作
+   # 当程序中需要验证google验证码时，可以使用如下伪代码
+   public function index()
+   {
+        // $google 用户之前绑定的code
+        // $vertify 本次待验证的验证码
+        if (\OhhInk\Rrm\Model\Google::CheckCode($google, $vertify)) {
+                // pass
+        } else {
+                // fail
+        }
+   }
    ```
 ## 相关仓库
 
