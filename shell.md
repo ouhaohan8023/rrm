@@ -30,6 +30,20 @@ composer require ohhink/rrm:dev-master
 
 // 删除composer缓存
 composer clear-cache
+
+// 删除远程标签
+git push origin :refs/tags/1.1.2
+
+// 删除本地标签
+git tag -d 1.1.1
+
+// 创建标签
+git tag 1.1.2
+
+// 推送标签
+git push origin 1.1.2
+// OR 
+git push origin --tags
 ```
 
 
