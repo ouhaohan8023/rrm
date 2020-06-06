@@ -87,6 +87,8 @@ $ composer require ohhink/rrm
 根目录下运行资源发布，此命令会增加配置文件(`admin.php`,`filesystems.php`,`permission.php`)，以及前端资源文件和数据库填充文件
 ```bash
 $ php artisan vendor:publish
+# 如果要获取最新的Seeder数据，运行如下命令强制覆盖. 此命令会覆盖掉原先的文件，请谨慎操作
+$ php artisan vendor:publish --tag=seeds --force
 ```
 
 根目录下运行数据库迁移填充命令

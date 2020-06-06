@@ -1,9 +1,7 @@
 <?php
 
-namespace OhhInk\Rrm\Admin;
+namespace OhhInk\Rrm\Controllers\Admin;
 
-use OhhInk\Rrm\Model\AdminMenu;
-use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Redirect;
 use Spatie\Permission\Models\Permission;

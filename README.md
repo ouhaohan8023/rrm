@@ -67,6 +67,7 @@ $ composer require ohhink/rrm
 Publish the files , which include `admin.php`,`filesystems.php`,`permission.php` and front resource files and database seeds files
 ```bash
 $ php artisan vendor:publish
+# if you want to reload latest package seeder, run this command in force. It will remove the origin seeder , so please be careful
 $ php artisan vendor:publish --tag=seeds --force
 ```
 
@@ -75,6 +76,7 @@ Build the database and run the seeder
 # run autoload first to update the userseeder
 $ composer dump-autoload
 $ php artisan migrate:refresh --seed
+$ php artisan db:seed --class=RrmDatabaseSeeder 
 ```
 
 Publish the admin index blade files
@@ -82,10 +84,26 @@ Publish the admin index blade files
 $ php artisan vendor:publish --tag=views --force
 ```
 
-give folder right and soft-link
+Give folder right and soft-link
 ```bash
 $ chmod -R 777 storage
 $ php artisan storage:link
+```
+
+If you want to use Google Authenticator, you have to add this provider and aliases by yourself
+```php
+// config/app.php
+
+'providers' => [
+    //........
+    Earnp\GoogleAuthenticator\GoogleAuthenticatorServiceprovider::class,
+    SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+],
+
+'aliases' => [
+     //..........
+    'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
+],
 ```
 
 That's it !

@@ -19,12 +19,12 @@ class RrmServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/config/filesystems.php', 'filesystems');
-        $this->mergeConfigFrom(__DIR__.'/config/database.php', 'database');
-        $this->mergeConfigFrom(__DIR__.'/config/auth.php', 'auth');
+        $this->mergeConfigFrom(__DIR__.'/Config/filesystems.php', 'filesystems');
+        $this->mergeConfigFrom(__DIR__.'/Config/database.php', 'database');
+        $this->mergeConfigFrom(__DIR__.'/Config/auth.php', 'auth');
         // 使用基于类方法的 composers...
-        View::composer('rrm::admin.layout.right-bar', 'OhhInk\Rrm\ViewComposers\RightBar');
-        View::composer('rrm::admin.layout.header', 'OhhInk\Rrm\ViewComposers\Header');
+        View::composer('rrm::admin.layout.right-bar', 'OhhInk\Rrm\Views\RightBar');
+        View::composer('rrm::admin.layout.header', 'OhhInk\Rrm\Views\Header');
     }
 
     /**
@@ -37,34 +37,34 @@ class RrmServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         $this->publishes([
-            __DIR__.'/config/admin.php'       => config_path('admin.php'),
+            __DIR__.'/Config/admin.php'       => config_path('admin.php'),
             //            __DIR__.'/config/permission.php' => config_path('permission.php'),
-            __DIR__.'/config/filesystems.php' => config_path('filesystems.php'),
-        ], 'config');
+            __DIR__.'/Config/filesystems.php' => config_path('filesystems.php'),
+        ], 'Config');
 
         $this->publishes([
-            __DIR__.'/public' => public_path('./'),
+            __DIR__.'/Public' => public_path('./'),
         ], 'public');
 
         $this->publishes([
-            __DIR__.'/database/seeds' => database_path('seeds'),
+            __DIR__.'/Database/seeds' => database_path('seeds'),
         ], 'seeds');
 
         $this->publishes([
-            __DIR__.'/resources/lang' => resource_path('lang/vendor/rrm/'),
+            __DIR__.'/Resources/lang' => resource_path('lang/vendor/rrm/'),
         ], 'lang');
 
         $this->publishes([
-            __DIR__.'/resources/views/admin/index.blade.php' => resource_path('views/vendor/rrm/admin/index.blade.php'),
-            __DIR__.'/resources/views/admin/layout/header.blade.php' => resource_path('views/vendor/rrm/admin/layout/header.blade.php'),
-            __DIR__.'/resources/views/admin/layout/footer.blade.php' => resource_path('views/vendor/rrm/admin/layout/footer.blade.php'),
+            __DIR__.'/Resources/views/admin/index.blade.php'         => resource_path('views/vendor/rrm/admin/index.blade.php'),
+            __DIR__.'/Resources/views/admin/layout/header.blade.php' => resource_path('views/vendor/rrm/admin/layout/header.blade.php'),
+            __DIR__.'/Resources/views/admin/layout/footer.blade.php' => resource_path('views/vendor/rrm/admin/layout/footer.blade.php'),
         ], 'views');
 
 
-        $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'rrm');
-        $this->loadRoutesFrom(__DIR__.'/routes/admin.php');
-        $this->loadViewsFrom(__DIR__.'/resources/views', 'rrm');
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->loadTranslationsFrom(__DIR__.'/Resources/lang', 'rrm');
+        $this->loadRoutesFrom(__DIR__.'/Routes/admin.php');
+        $this->loadViewsFrom(__DIR__.'/Resources/views', 'rrm');
+        $this->loadMigrationsFrom(__DIR__.'/Database/migrations');
         $this->app['router']->aliasMiddleware('admin', Admin::class);
 
         // give all right to super admin

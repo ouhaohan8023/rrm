@@ -1,6 +1,6 @@
 <?php
 
-namespace OhhInk\Rrm\Auth;
+namespace OhhInk\Rrm\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;

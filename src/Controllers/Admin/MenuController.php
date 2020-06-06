@@ -1,6 +1,6 @@
 <?php
 
-namespace OhhInk\Rrm\Admin;
+namespace OhhInk\Rrm\Controllers\Admin;
 
 use OhhInk\Rrm\Model\AdminMenu;
 use Illuminate\Support\Facades\Cache;

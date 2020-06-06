@@ -1,6 +1,6 @@
 <?php
 
-namespace OhhInk\Rrm\Admin;
+namespace OhhInk\Rrm\Controllers\Admin;
 
 use OhhInk\Rrm\ValidationForZhCn;
 use Spatie\Permission\Models\Role;

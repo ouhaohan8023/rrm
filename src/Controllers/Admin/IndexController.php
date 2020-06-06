@@ -1,7 +1,6 @@
 <?php
 
-namespace OhhInk\Rrm\Admin;
-
+namespace OhhInk\Rrm\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

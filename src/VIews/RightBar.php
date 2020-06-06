@@ -1,6 +1,6 @@
 <?php
 
-namespace OhhInk\Rrm\ViewComposers;
+namespace OhhInk\Rrm\Views;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;

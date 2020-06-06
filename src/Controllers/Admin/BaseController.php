@@ -1,6 +1,6 @@
 <?php
 
-namespace OhhInk\Rrm\Admin;
+namespace OhhInk\Rrm\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 

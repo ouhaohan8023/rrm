@@ -1,6 +1,6 @@
 <?php
 
-namespace OhhInk\Rrm\Admin;
+namespace OhhInk\Rrm\Controllers\Admin;
 
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Arr;
