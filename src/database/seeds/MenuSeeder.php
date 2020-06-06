@@ -68,6 +68,10 @@ class MenuSeeder extends Seeder
                 'url'  => 'admin.user.create',
                 'icon' => ''
             ],
+            [
+                'url'  => 'admin.op-log.index',
+                'icon' => 'fa fa-eye'
+            ],
         ];
 
         DB::table('admin_menus')->insert($data);

@@ -5,10 +5,10 @@ use Illuminate\Support\Facades\App;
 
 Route::group(['middleware' => ['web']], function () {
 
-    Route::get('lang/{locale}', 'OhhInk\Rrm\Admin\IndexController@setLang');
-    Route::get('error', 'OhhInk\Rrm\Admin\IndexController@error')->name('error');
+    Route::get('lang/{locale}', 'OhhInk\Rrm\Controllers\Admin\IndexController@setLang');
+    Route::get('error', 'OhhInk\Rrm\Controllers\Admin\IndexController@error')->name('error');
 
-    Route::namespace('OhhInk\Rrm\Auth')->group(function () {
+    Route::namespace('OhhInk\Rrm\Controllers\Auth')->group(function () {
         Route::get('login/{lang?}', 'LoginController@showLoginForm')->name('login');
         Route::post('login', 'LoginController@login');
         Route::post('logout', 'LoginController@logout')->name('logout');
@@ -27,14 +27,14 @@ Route::group(['middleware' => ['web']], function () {
     // 抛开权限认证
     Route::prefix(config('admin.prefix'))->middleware([
         'auth',
-    ])->namespace('OhhInk\Rrm\Admin')->name('admin.')->group(function () {
+    ])->namespace('OhhInk\Rrm\Controllers\Admin')->name('admin.')->group(function () {
         Route::any('/bind', 'IndexController@bind')->name('bind');
     });
 
     Route::prefix(config('admin.prefix'))->middleware([
         'auth',
         'admin'
-    ])->namespace('OhhInk\Rrm\Admin')->name('admin.')->group(function () {
+    ])->namespace('OhhInk\Rrm\Controllers\Admin')->name('admin.')->group(function () {
         Route::get('/', 'IndexController@index')->name('index');
         //        用户管理
         Route::prefix('user')->name('user.')->group(function () {
@@ -46,6 +46,7 @@ Route::group(['middleware' => ['web']], function () {
             Route::any('/assignment/{id}', 'UserController@assignment')->name('assignment');
         });
 
+        // 角色
         Route::prefix('role')->name('role.')->group(function () {
             Route::get('/', 'RoleController@index')->name('');
             Route::get('/index', 'RoleController@index')->name('index');
@@ -54,12 +55,14 @@ Route::group(['middleware' => ['web']], function () {
             Route::any('/update/{id}', 'RoleController@update')->name('update');
             Route::any('/assignment/{id}', 'RoleController@assignment')->name('assignment');
         });
+        // 权限
         Route::prefix('permission')->name('permission.')->group(function () {
             Route::get('/', 'PermissionController@index')->name('');
             Route::get('/index', 'PermissionController@index')->name('index');
             Route::post('/delete', 'PermissionController@delete')->name('delete');
             Route::get('/reload', 'PermissionController@reload')->name('reload');
         });
+        // 菜单
         Route::prefix('menu')->name('menu.')->group(function () {
             Route::get('/', 'MenuController@index')->name('');
             Route::get('/index', 'MenuController@index')->name('index');
@@ -69,6 +72,7 @@ Route::group(['middleware' => ['web']], function () {
             Route::any('/make', 'MenuController@make')->name('make');
             Route::any('/clear', 'MenuController@clear')->name('clear');
         });
+        // 系统日志
         Route::prefix('op-log')->name('op-log.')->group(function () {
             Route::get('/', 'OpLogsController@index')->name('');
             Route::get('/index', 'OpLogsController@index')->name('index');
