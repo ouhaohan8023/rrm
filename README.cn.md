@@ -87,7 +87,6 @@ $ composer require ohhink/rrm
 根目录下运行资源发布，此命令会增加配置文件(`admin.php`,`filesystems.php`,`permission.php`)，以及前端资源文件和数据库填充文件
 ```bash
 $ php artisan vendor:publish
-$ php artisan vendor:publish --tag=seeds --force
 ```
 
 根目录下运行数据库迁移填充命令
@@ -95,6 +94,7 @@ $ php artisan vendor:publish --tag=seeds --force
 # run autoload first to update the userseeder
 $ composer dump-autoload
 $ php artisan migrate:refresh --seed
+$ php artisan db:seed --class=RrmDatabaseSeeder 
 ```
 
 生成可替换的首页模板
@@ -106,6 +106,22 @@ $ php artisan vendor:publish --tag=views --force
 ```bash
 $ chmod -R 777 storage
 $ php artisan storage:link
+```
+
+如要开启Google Authenticator功能，需手动加入服务提供者
+```php
+// config/app.php
+
+'providers' => [
+    //........
+    Earnp\GoogleAuthenticator\GoogleAuthenticatorServiceprovider::class,
+    SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+],
+
+'aliases' => [
+     //..........
+    'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
+],
 ```
 
 至此，安装完毕
@@ -240,6 +256,8 @@ $ php artisan storage:link
         }
    }
    ```
+   
+   
 ## 相关仓库
 
 - [Laravel Permission](https://github.com/spatie/laravel-permission.git) - Associate users with permissions and roles
