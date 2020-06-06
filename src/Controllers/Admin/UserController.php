@@ -2,7 +2,7 @@
 
 namespace OhhInk\Rrm\Controllers\Admin;
 
-use OhhInk\Rrm\ValidationForZhCn;
+use OhhInk\Rrm\Traits\ValidationForZhCn;
 use Spatie\Permission\Models\Role;
 use OhhInk\Rrm\Model\User;
 use Illuminate\Http\Request;
