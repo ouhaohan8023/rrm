@@ -86,7 +86,7 @@
                             @endforeach
                             </tbody>
                         </table>
-                        @include('rrm::admin.layout.pagination',['data'=>$data])
+                        @include('rrm::admin.layout.pagination',['data'=>$data,'append'=>['keyword'=>old('keyword'),'name'=>old('name'),'start'=>old('start'),'stop'=>old('stop')]])
                     </section>
                 </div>
             </div>
