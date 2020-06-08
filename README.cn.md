@@ -11,7 +11,7 @@
 本拓展包运行基础环境：
 
 1. Php >= 7.2
-2. Laravel >= 6.1
+2. Laravel Version >= 6.1  && < 7.0 （Laravel大于7版本暂不支持，会尽快跟进）
 
 ## 内容列表
 
@@ -97,11 +97,6 @@ $ php artisan vendor:publish --tag=seeds --force
 $ composer dump-autoload
 $ php artisan migrate:refresh --seed
 $ php artisan db:seed --class=RrmDatabaseSeeder 
-```
-
-生成可替换的首页模板
-```bash
-$ php artisan vendor:publish --tag=views --force
 ```
 
 设置文件夹权限和软连接

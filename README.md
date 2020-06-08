@@ -11,7 +11,7 @@ This package is based on [Laravel Permission](https://github.com/spatie/laravel-
 Server Requirements：
 
 1. Php >= 7.2
-2. Laravel >= 6.1
+2. Laravel Version >= 6.1  && < 7.0 （Not Support for Laravel Version >= 7.0 , will update soon）
 
 ## what include
 
@@ -77,11 +77,6 @@ Build the database and run the seeder
 $ composer dump-autoload
 $ php artisan migrate:refresh --seed
 $ php artisan db:seed --class=RrmDatabaseSeeder 
-```
-
-Publish the admin index blade files
-```bash
-$ php artisan vendor:publish --tag=views --force
 ```
 
 Give folder right and soft-link
